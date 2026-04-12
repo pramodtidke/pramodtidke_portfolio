@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pramod Tidke · DevOps / Cloud / SRE Engineer</title>
+<meta name="description" content="DevOps Engineer based in Pune, India. Building production-grade CI/CD pipelines, AWS infrastructure, Kubernetes platforms, and GitOps delivery systems."/>
+<meta property="og:title" content="Pramod Tidke · DevOps / Cloud / SRE Engineer"/>
+<meta property="og:description" content="4 open-source projects. AWS · Kubernetes · Terraform · GitHub Actions · ArgoCD."/>
+<meta property="og:url" content="https://pramodtidke.in"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:       #0D1117;
+  --bg2:      #161B22;
+  --bg3:      #1C2128;
+  --bg4:      #21262D;
+  --bg5:      #2D333B;
+  --border:   #30363D;
+  --border2:  #3D444D;
+  --border3:  #484F58;
+  --text:     #E6EDF3;
+  --text2:    #8B949E;
+  --text3:    #484F58;
+  --blue:     #58A6FF;
+  --blue2:    #1F6FEB;
+  --blue3:    #0D419D;
+  --blue-bg:  #0C2340;
+  --green:    #3FB950;
+  --green2:   #196C2E;
+  --green-bg: #0A1F13;
+  --orange:   #F0883E;
+  --orange2:  #B46617;
+  --orange-bg:#241407;
+  --purple:   #BC8CFF;
+  --purple2:  #6E40C9;
+  --purple-bg:#1A0F2E;
+  --red:      #F85149;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ── GRID NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(88,166,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(88,166,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── SCANLINES ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.site {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════
+   NAV
+══════════════════════════════════ */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(13,17,23,0.92);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.nav-logo .prompt { color: var(--green); }
+.nav-logo .cursor {
+  display: inline-block;
+  width: 9px; height: 16px;
+  background: var(--blue);
+  animation: blink 1.1s step-end infinite;
+  margin-left: 2px;
+  border-radius: 1px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.nav-links { display: flex; gap: 2px; }
+.nav-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+.nav-link:hover { color: var(--text); border-color: var(--border); background: var(--bg3); }
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green);
+}
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-green 2s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%,100% { box-shadow: 0 0 0 0 rgba(63,185,80,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(63,185,80,0); }
+}
+
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero {
+  padding: 64px 28px 56px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow blob behind hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(31,111,235,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-terminal {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-up 0.6s ease 0.2s forwards;
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+.t-dot { width: 12px; height: 12px; border-radius: 50%; }
+.terminal-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text3);
+  margin-left: auto;
+}
+.terminal-body {
+  padding: 20px 22px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.95;
+}
+.t-line { opacity: 0; animation: type-in 0.01s ease forwards; }
+.t-prompt { color: var(--green); }
+.t-cmd    { color: var(--blue); }
+.t-key    { color: var(--orange); }
+.t-val    { color: var(--purple); }
+.t-str    { color: var(--green); }
+.t-str2   { color: var(--blue); }
+.t-brace  { color: var(--text2); }
+.t-comment{ color: var(--text3); }
+
+@keyframes type-in { to { opacity: 1; } }
+
+/* stagger each terminal line */
+.t-line:nth-child(1)  { animation-delay: 0.8s; }
+.t-line:nth-child(2)  { animation-delay: 1.0s; }
+.t-line:nth-child(3)  { animation-delay: 1.15s; }
+.t-line:nth-child(4)  { animation-delay: 1.3s; }
+.t-line:nth-child(5)  { animation-delay: 1.45s; }
+.t-line:nth-child(6)  { animation-delay: 1.6s; }
+.t-line:nth-child(7)  { animation-delay: 1.75s; }
+.t-line:nth-child(8)  { animation-delay: 1.9s; }
+.t-line:nth-child(9)  { animation-delay: 2.05s; }
+.t-line:nth-child(10) { animation-delay: 2.2s; }
+.t-line:nth-child(11) { animation-delay: 2.35s; }
+.t-line:nth-child(12) { animation-delay: 2.5s; }
+.t-line:nth-child(13) { animation-delay: 2.65s; }
+
+.hero-headline {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 18px;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fade-up 0.6s ease 0.5s forwards;
+  letter-spacing: -0.5px;
+}
+.hero-headline .hl { color: var(--blue); }
+.hero-headline .hl2 { color: var(--green); }
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 540px;
+  margin-bottom: 32px;
+  line-height: 1.75;
+  opacity: 0;
+  animation: fade-up 0.6s ease 0.7s forwards;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fade-up 0.6s ease 0.9s forwards;
+}
+.btn-primary {
+  background: var(--blue2);
+  color: #fff;
+  border: 1px solid var(--blue);
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  font-family: var(--sans);
+}
+.btn-primary:hover { background: #388BFD; transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border2);
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--mono);
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
+
+/* ── PIPELINE ANIMATION ── */
+.pipeline-wrap {
+  opacity: 0;
+  animation: fade-up 0.6s ease 1.1s forwards;
+}
+.pipeline-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+}
+.pipeline {
+  display: flex;
+  align-items: center;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  gap: 0;
+}
+.pipe-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 72px;
+}
+.pipe-icon {
+  width: 34px; height: 34px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.pipe-icon svg { width: 16px; height: 16px; }
+.pipe-label { font-size: 10px; color: var(--text2); font-family: var(--mono); }
+.pipe-status { font-size: 10px; font-family: var(--mono); }
+.s-pass { color: var(--green); }
+.s-run  { color: var(--orange); }
+
+.pipe-connector {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20px;
+  padding: 0 4px 20px;
+  flex-shrink: 0;
+}
+.pipe-line {
+  height: 2px;
+  width: 28px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.pipe-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--green), transparent);
+  transform: translateX(-100%);
+  animation: flow 2.5s ease-in-out infinite;
+}
+.pipe-line:nth-child(1)::after { animation-delay: 0s; }
+@keyframes flow { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+
+.pipe-arrow {
+  color: var(--text3);
+  font-size: 12px;
+  flex-shrink: 0;
+  padding-bottom: 20px;
+}
+
+/* ══════════════════════════════════
+   SECTIONS
+══════════════════════════════════ */
+.section {
+  padding: 56px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green);
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
+}
+.section-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 36px;
+  letter-spacing: -0.3px;
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* ══════════════════════════════════
+   STATS
+══════════════════════════════════ */
+.infra-stats {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.istat {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  text-align: center;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+.istat:hover { border-color: var(--border2); transform: translateY(-2px); }
+.istat-num {
+  font-family: var(--mono);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--blue);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.istat-label {
+  font-size: 12px;
+  color: var(--text2);
+}
+
+/* ══════════════════════════════════
+   PROJECTS
+══════════════════════════════════ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.proj-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.proj-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue2), var(--blue));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.proj-card:hover { border-color: var(--border2); transform: translateY(-3px); background: var(--bg3); }
+.proj-card:hover::before { transform: scaleX(1); }
+
+.proj-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.proj-name {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--blue);
+}
+.proj-lang {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--text2);
+  font-family: var(--mono);
+}
+.lang-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+.proj-desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 14px;
+  flex: 1;
+}
+.proj-metric {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--green);
+  background: var(--green-bg);
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 14px;
+  border: 1px solid var(--green2);
+}
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+.proj-tag {
+  font-size: 11px;
+  color: var(--text2);
+  background: var(--bg4);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  transition: border-color 0.15s, color 0.15s;
+}
+.proj-card:hover .proj-tag { border-color: var(--border2); }
+
+.proj-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+.proj-link {
+  font-size: 12px;
+  color: var(--blue);
+  text-decoration: none;
+  font-family: var(--mono);
+  transition: color 0.15s;
+}
+.proj-link:hover { color: #79C0FF; }
+.proj-badge {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: var(--mono);
+  background: var(--bg4);
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+/* ══════════════════════════════════
+   SKILLS
+══════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.skill-cat {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+.skill-cat:hover { border-color: var(--border2); }
+
+.skill-cat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-cat-icon {
+  width: 30px; height: 30px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.skill-cat-icon svg { width: 15px; height: 15px; }
+.skill-cat-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.skill-items { display: flex; flex-direction: column; gap: 9px; }
+.skill-item { display: flex; align-items: center; gap: 10px; }
+.skill-name {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text2);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.skill-bar-wrap {
+  width: 72px;
+  height: 4px;
+  background: var(--bg4);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.skill-bar {
+  height: 100%;
+  border-radius: 2px;
+  width: 0;
+  transition: width 1.2s ease;
+}
+.skill-bar.animated { /* width set by JS */ }
+
+/* ══════════════════════════════════
+   EXPERIENCE
+══════════════════════════════════ */
+.exp-timeline {
+  position: relative;
+  padding-left: 28px;
+}
+.exp-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px; top: 8px; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.exp-item {
+  position: relative;
+  margin-bottom: 36px;
+}
+.exp-item:last-child { margin-bottom: 0; }
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -23px; top: 7px;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  background: var(--bg);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.exp-item:hover::before {
+  background: var(--blue);
+  box-shadow: 0 0 10px rgba(88,166,255,0.4);
+}
+
+.exp-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  margin-bottom: 5px;
+  display: inline-block;
+  background: var(--blue-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--blue3);
+}
+.exp-role {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.exp-company {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 12px;
+  font-family: var(--mono);
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.exp-bullets li {
+  font-size: 13px;
+  color: var(--text2);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.65;
+}
+.exp-bullets li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* ══════════════════════════════════
+   ABOUT
+══════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.about-text {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.8;
+}
+.about-text p { margin-bottom: 14px; }
+.about-text strong { color: var(--text); font-weight: 500; }
+
+.about-cards { display: flex; flex-direction: column; gap: 10px; }
+.about-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.about-card:hover { border-color: var(--border2); transform: translateX(3px); }
+.about-card-icon {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.about-card-icon svg { width: 13px; height: 13px; }
+.about-card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text3);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.about-card-val {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ══════════════════════════════════
+   CONTACT
+══════════════════════════════════ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.contact-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+.contact-card h3 {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.contact-card p {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 9px; }
+.clink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text2);
+  text-decoration: none;
+  padding: 9px 14px;
+  background: var(--bg3);
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  transition: all 0.2s;
+}
+.clink:hover { color: var(--text); border-color: var(--border2); background: var(--bg4); transform: translateX(3px); }
+.clink svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+.yaml-card {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 2;
+}
+.yaml-comment { color: var(--text3); }
+.yaml-key     { color: var(--orange); }
+.yaml-str     { color: var(--green); }
+.yaml-bool    { color: var(--purple); }
+.yaml-num     { color: var(--blue); }
+.yaml-arr     { color: var(--text2); }
+
+.open-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-bg);
+  border: 1px solid var(--green2);
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-bottom: 28px;
+}
+
+/* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+.footer {
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+.footer-text { font-family: var(--mono); font-size: 12px; color: var(--text3); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text2);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-links a:hover { color: var(--blue); }
+
+/* ══════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════ */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-headline { font-size: 30px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .infra-stats { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .pipeline { gap: 0; }
+}
+@media (max-width: 480px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .infra-stats { grid-template-columns: 1fr 1fr; }
+  .hero { padding: 40px 18px 40px; }
+  .section { padding: 40px 18px; }
+  .nav { padding: 12px 18px; }
+}
+</style>
+</head>
+<body>
+<div class="site">
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-logo">
+    <span class="prompt">~$</span>&nbsp;pramodtidke<span class="cursor"></span>
+  </div>
+  <div class="nav-links">
+    <a class="nav-link" href="#about">./about</a>
+    <a class="nav-link" href="#projects">./projects</a>
+    <a class="nav-link" href="#skills">./skills</a>
+    <a class="nav-link" href="#experience">./experience</a>
+    <a class="nav-link" href="#contact">./contact</a>
+  </div>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    open to work
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-terminal">
+    <div class="terminal-bar">
+      <div class="t-dot" style="background:#FF5F57"></div>
+      <div class="t-dot" style="background:#FFBD2E"></div>
+      <div class="t-dot" style="background:#28C840"></div>
+      <span class="terminal-title">pramod@devops:~ — whoami</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="t-prompt">pramod@devops</span><span style="color:var(--text2)">:</span><span style="color:var(--blue)">~</span><span style="color:var(--text2)">$ </span><span class="t-cmd">cat engineer.json</span></div>
+      <div class="t-line"><span class="t-brace">{</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"name"</span><span class="t-brace">: </span><span class="t-str">"Pramod Tidke"</span><span class="t-brace">,</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"role"</span><span class="t-brace">: </span><span class="t-str">"DevOps / Cloud / SRE Engineer"</span><span class="t-brace">,</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"location"</span><span class="t-brace">: </span><span class="t-str">"Pune, India"</span><span class="t-brace">,</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"stack"</span><span class="t-brace">: [</span><span class="t-str2">"AWS"</span><span class="t-brace">, </span><span class="t-str2">"Kubernetes"</span><span class="t-brace">, </span><span class="t-str2">"Terraform"</span><span class="t-brace">, </span><span class="t-str2">"ArgoCD"</span><span class="t-brace">, </span><span class="t-str2">"GitHub Actions"</span><span class="t-brace">],</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"open_to"</span><span class="t-brace">: [</span><span class="t-str2">"DevOps Engineer"</span><span class="t-brace">, </span><span class="t-str2">"Cloud Engineer"</span><span class="t-brace">, </span><span class="t-str2">"SRE"</span><span class="t-brace">, </span><span class="t-str2">"Platform Engineer"</span><span class="t-brace">],</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"projects_shipped"</span><span class="t-brace">: </span><span style="color:var(--blue)">4</span><span class="t-brace">,</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"github"</span><span class="t-brace">: </span><span class="t-str">"github.com/pramodtidke"</span><span class="t-brace">,</span></div>
+      <div class="t-line">&nbsp;&nbsp;<span class="t-key">"status"</span><span class="t-brace">: </span><span class="t-str" style="color:var(--green)">"actively_looking"</span></div>
+      <div class="t-line"><span class="t-brace">}</span></div>
+      <div class="t-line" style="margin-top:4px"><span class="t-prompt">pramod@devops</span><span style="color:var(--text2)">:</span><span style="color:var(--blue)">~</span><span style="color:var(--text2)">$ </span><span class="t-cmd" id="typed-cmd"></span><span class="t-cmd" style="animation: blink 1s step-end infinite; border-right: 2px solid var(--blue);">&nbsp;</span></div>
+    </div>
+  </div>
+
+  <h1 class="hero-headline">
+    Ship infrastructure.<br>
+    Secure pipelines.<br>
+    Own the <span class="hl">platform.</span>
+  </h1>
+  <p class="hero-sub">
+    DevOps/Cloud/SRE Engineer based in Pune, India. I design and operate production-grade systems — CI/CD with security baked in, AWS infrastructure-as-code, Kubernetes observability, and GitOps delivery at scale.
+  </p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#projects">View projects</a>
+    <a class="btn-outline" href="pramod_tidke_resume.pdf" download>$ download resume</a>
+    <a class="btn-outline" href="#contact">./contact me</a>
+  </div>
+
+  <div class="pipeline-wrap">
+    <div class="pipeline-label"># CI/CD pipeline · SecureFlow-CI · last run: success ✓</div>
+    <div class="pipeline">
+      <div class="pipe-stage">
+        <div class="pipe-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <span class="pipe-label">code</span>
+        <span class="pipe-status s-pass">● passed</span>
+      </div>
+      <div class="pipe-connector"><div class="pipe-line"></div><span class="pipe-arrow">▶</span></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        </div>
+        <span class="pipe-label">lint</span>
+        <span class="pipe-status s-pass">● passed</span>
+      </div>
+      <div class="pipe-connector"><div class="pipe-line"></div><span class="pipe-arrow">▶</span></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <span class="pipe-label">build</span>
+        <span class="pipe-status s-pass">● passed</span>
+      </div>
+      <div class="pipe-connector"><div class="pipe-line"></div><span class="pipe-arrow">▶</span></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon" style="background:var(--orange-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0883E" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="pipe-label">security</span>
+        <span class="pipe-status s-pass">● passed</span>
+      </div>
+      <div class="pipe-connector"><div class="pipe-line"></div><span class="pipe-arrow">▶</span></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon" style="background:var(--purple-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#BC8CFF" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <span class="pipe-label">push</span>
+        <span class="pipe-status s-pass">● passed</span>
+      </div>
+      <div class="pipe-connector"><div class="pipe-line"></div><span class="pipe-arrow">▶</span></div>
+      <div class="pipe-stage">
+        <div class="pipe-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <span class="pipe-label">deploy</span>
+        <span class="pipe-status s-pass">● passed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="section" id="about">
+  <div class="section-eyebrow">// about</div>
+  <div class="section-title">Engineer. Builder. Teacher.</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>DevOps/Cloud/SRE Engineer</strong> with a background in release &amp; platform engineering at Capgemini, where I worked on Linux-based automotive IVI systems for Panasonic.</p>
+      <p>Since then I've gone deep into the modern DevOps stack — building 4 open-source, end-to-end projects spanning <strong>DevSecOps pipelines</strong>, <strong>AWS IaC</strong>, <strong>Kubernetes observability</strong>, and <strong>GitOps delivery</strong>. Every project has a real result, not just a README.</p>
+      <p>I believe in the <strong>learn · build · teach</strong> philosophy. Outside of infra, I run a YouTube channel called <strong>SevenLearn</strong> — making DevOps accessible for complete beginners with zero jargon.</p>
+    </div>
+    <div class="about-cards reveal reveal-delay-1">
+      <div class="about-card">
+        <div class="about-card-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="about-card-label">Location</div>
+          <div class="about-card-val">Pune, India</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div>
+          <div class="about-card-label">Experience</div>
+          <div class="about-card-val">2+ years · Capgemini + Projects</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon" style="background:var(--purple-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#BC8CFF" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div class="about-card-label">Currently pursuing</div>
+          <div class="about-card-val">AWS SAA · CKA · Terraform Associate</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon" style="background:var(--orange-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0883E" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.95C18.88 4 12 4 12 4s-6.88 0-8.59.47A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+        </div>
+        <div>
+          <div class="about-card-label">Also building</div>
+          <div class="about-card-val">SevenLearn · DevOps for beginners</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.4 17z"/></svg>
+        </div>
+        <div>
+          <div class="about-card-label">Contact</div>
+          <div class="about-card-val">pramodtidkework@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS + PROJECTS ═══ -->
+<section class="section" id="projects">
+  <div class="section-eyebrow">// metrics</div>
+  <div class="infra-stats">
+    <div class="istat reveal">
+      <span class="istat-num" data-target="4">0</span>
+      <div class="istat-label">open-source projects</div>
+    </div>
+    <div class="istat reveal reveal-delay-1">
+      <span class="istat-num" style="color:var(--green)" data-target-text="99.9%">0%</span>
+      <div class="istat-label">uptime achieved</div>
+    </div>
+    <div class="istat reveal reveal-delay-2">
+      <span class="istat-num" style="color:var(--orange)" data-target-text="~84%">0%</span>
+      <div class="istat-label">release time cut</div>
+    </div>
+    <div class="istat reveal reveal-delay-3">
+      <span class="istat-num" style="color:var(--purple)" data-target="0">–</span>
+      <div class="istat-label">manual deploys needed</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow">// projects</div>
+  <div class="section-title">What I've built</div>
+  <div class="projects-grid">
+
+    <div class="proj-card reveal">
+      <div class="proj-header">
+        <span class="proj-name">SecureFlow-CI</span>
+        <span class="proj-lang"><span class="lang-dot" style="background:#3572A5"></span>Python</span>
+      </div>
+      <p class="proj-desc">5-stage DevSecOps pipeline from code commit to deployed container. Trivy CVE scanning and GitLeaks secrets detection catch critical issues before anything reaches production.</p>
+      <div class="proj-metric">⚡ code → deploy in &lt; 4 minutes</div>
+      <div class="proj-tags">
+        <span class="proj-tag">GitHub Actions</span>
+        <span class="proj-tag">Docker</span>
+        <span class="proj-tag">Trivy</span>
+        <span class="proj-tag">GitLeaks</span>
+        <span class="proj-tag">SARIF</span>
+        <span class="proj-tag">OIDC</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://github.com/pramodtidke/SecureFlow-CI" target="_blank">pramodtidke/SecureFlow-CI →</a>
+        <span class="proj-badge">DevSecOps</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-header">
+        <span class="proj-name">InfraStack-AWS</span>
+        <span class="proj-lang"><span class="lang-dot" style="background:#7B42BC"></span>HCL</span>
+      </div>
+      <p class="proj-desc">Multi-environment AWS infrastructure via Terraform — VPC, ECS Fargate, IAM, S3, DynamoDB state locking. Auto-scaling handles 3× traffic spikes with zero downtime.</p>
+      <div class="proj-metric">⚡ 12+ AWS resources in &lt; 8 minutes</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Terraform</span>
+        <span class="proj-tag">AWS ECS</span>
+        <span class="proj-tag">VPC</span>
+        <span class="proj-tag">IAM</span>
+        <span class="proj-tag">S3</span>
+        <span class="proj-tag">DynamoDB</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://github.com/pramodtidke/InfraStack-AWS" target="_blank">pramodtidke/InfraStack-AWS →</a>
+        <span class="proj-badge">IaC</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-header">
+        <span class="proj-name">ObserveX</span>
+        <span class="proj-lang"><span class="lang-dot" style="background:#E6522C"></span>Helm</span>
+      </div>
+      <p class="proj-desc">Full-stack observability for a 3-service Kubernetes app. Prometheus metrics, 4 Grafana dashboards, OpenTelemetry distributed tracing, 6 Alertmanager rules. One Helm command to deploy everything.</p>
+      <div class="proj-metric">⚡ debug time 15 min → 3 min</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Kubernetes</span>
+        <span class="proj-tag">Prometheus</span>
+        <span class="proj-tag">Grafana</span>
+        <span class="proj-tag">OpenTelemetry</span>
+        <span class="proj-tag">Helm</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://github.com/pramodtidke/ObserveX" target="_blank">pramodtidke/ObserveX →</a>
+        <span class="proj-badge">Observability</span>
+      </div>
+    </div>
+
+    <div class="proj-card reveal reveal-delay-3">
+      <div class="proj-header">
+        <span class="proj-name">GitOps-K8s</span>
+        <span class="proj-lang"><span class="lang-dot" style="background:#326CE5"></span>YAML</span>
+      </div>
+      <p class="proj-desc">Zero-touch Kubernetes delivery via ArgoCD. Every Git commit auto-syncs across dev, staging, and prod. RBAC, health checks, rollback policies. Full CI+GitOps loop end-to-end.</p>
+      <div class="proj-metric">⚡ deploy lead time → 90 seconds</div>
+      <div class="proj-tags">
+        <span class="proj-tag">ArgoCD</span>
+        <span class="proj-tag">Kubernetes</span>
+        <span class="proj-tag">Helm</span>
+        <span class="proj-tag">GitHub Actions</span>
+        <span class="proj-tag">ApplicationSets</span>
+      </div>
+      <div class="proj-footer">
+        <a class="proj-link" href="https://github.com/pramodtidke" target="_blank">pramodtidke/GitOps-K8s →</a>
+        <span class="proj-badge">GitOps</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ SKILLS ═══ -->
+<section class="section" id="skills">
+  <div class="section-eyebrow">// stack</div>
+  <div class="section-title">Skills &amp; tooling</div>
+  <div class="skills-grid">
+
+    <div class="skill-cat reveal">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <span class="skill-cat-name">CI/CD &amp; GitOps</span>
+      </div>
+      <div class="skill-items">
+        <div class="skill-item"><span class="skill-name">GitHub Actions</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="90"></div></div></div>
+        <div class="skill-item"><span class="skill-name">ArgoCD</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="82"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Jenkins</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="70"></div></div></div>
+        <div class="skill-item"><span class="skill-name">GitLab CI</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="65"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-cat reveal reveal-delay-1">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:var(--orange-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0883E" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <span class="skill-cat-name">Cloud (AWS)</span>
+      </div>
+      <div class="skill-items">
+        <div class="skill-item"><span class="skill-name">ECS / Fargate</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-name">IAM / VPC / S3</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="80"></div></div></div>
+        <div class="skill-item"><span class="skill-name">CloudWatch</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="72"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Lambda / EC2</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="68"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-cat reveal reveal-delay-2">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:var(--purple-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#BC8CFF" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <span class="skill-cat-name">Containers &amp; K8s</span>
+      </div>
+      <div class="skill-items">
+        <div class="skill-item"><span class="skill-name">Docker</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#BC8CFF" data-width="90"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Kubernetes</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#BC8CFF" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Helm</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#BC8CFF" data-width="80"></div></div></div>
+        <div class="skill-item"><span class="skill-name">OpenShift</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#BC8CFF" data-width="50"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-cat reveal">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg>
+        </div>
+        <span class="skill-cat-name">Observability</span>
+      </div>
+      <div class="skill-items">
+        <div class="skill-item"><span class="skill-name">Prometheus</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#3FB950" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Grafana</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#3FB950" data-width="82"></div></div></div>
+        <div class="skill-item"><span class="skill-name">OpenTelemetry</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#3FB950" data-width="75"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Alertmanager</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#3FB950" data-width="70"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-cat reveal reveal-delay-1">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:var(--orange-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F0883E" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <span class="skill-cat-name">DevSecOps</span>
+      </div>
+      <div class="skill-items">
+        <div class="skill-item"><span class="skill-name">Trivy</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="88"></div></div></div>
+        <div class="skill-item"><span class="skill-name">GitLeaks</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="82"></div></div></div>
+        <div class="skill-item"><span class="skill-name">SAST / SARIF</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="75"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Image hardening</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#F0883E" data-width="70"></div></div></div>
+      </div>
+    </div>
+
+    <div class="skill-cat reveal reveal-delay-2">
+      <div class="skill-cat-header">
+        <div class="skill-cat-icon" style="background:var(--blue-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        </div>
+        <span class="skill-cat-name">IaC &amp; Scripting</span>
+      </div>
+      <div class="skill-items">
+        <div class="skill-item"><span class="skill-name">Terraform</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Bash</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="80"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="75"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Ansible</span><div class="skill-bar-wrap"><div class="skill-bar" style="background:#58A6FF" data-width="60"></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section class="section" id="experience">
+  <div class="section-eyebrow">// experience</div>
+  <div class="section-title">Where I've worked</div>
+  <div class="exp-timeline">
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Dec 2023 – Present</div>
+      <div class="exp-role">Freelance · DevOps Transition &amp; Digital Agency</div>
+      <div class="exp-company">Independent / Self-directed · Pune, India</div>
+      <ul class="exp-bullets">
+        <li>Designed and open-sourced 4 production-grade DevOps projects covering CI/CD security pipelines, AWS IaC, Kubernetes observability, and GitOps delivery</li>
+        <li>Operated a client-facing digital marketing agency (Facebook &amp; Google Ads, web design) serving US-based clients</li>
+        <li>Actively pursuing AWS Certified Solutions Architect – Associate, CKA, and HashiCorp Terraform Associate certifications</li>
+        <li>Building SevenLearn — a YouTube channel teaching DevOps to absolute beginners with a learn · build · teach philosophy</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-1">
+      <div class="exp-date">Mar 2022 – Nov 2023</div>
+      <div class="exp-role">Software Engineer · Release &amp; Platform Engineering</div>
+      <div class="exp-company">Capgemini Technology Services · Navi Mumbai · Client: Panasonic Automotive Systems</div>
+      <ul class="exp-bullets">
+        <li>Coordinated build and release pipelines across dev, integration, and release branches for a Linux-based automotive IVI platform used across 5+ vehicle programs</li>
+        <li>Root-cause debugging across 6+ Linux system modules (kernel logs, process management, environment config), reducing defect resolution time by ~30%</li>
+        <li>Managed end-to-end defect lifecycle for 100+ test cases per release cycle across 3 cross-functional teams (firmware, middleware, QA)</li>
+      </ul>
+    </div>
+
+    <div class="exp-item reveal reveal-delay-2">
+      <div class="exp-date">2020</div>
+      <div class="exp-role">Bachelor of Engineering · Computer Science</div>
+      <div class="exp-company">G. H. Raisoni Institute of Engineering &amp; Technology, Nagpur</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section" id="contact">
+  <div class="section-eyebrow">// contact</div>
+  <div class="section-title">Let's work together</div>
+
+  <div class="open-badge reveal">
+    <div class="status-dot"></div>
+    actively looking · DevOps / Cloud / SRE / Platform Engineer
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-card reveal">
+      <h3>// reach out</h3>
+      <p>Open to full-time roles, contract work, and interesting infrastructure problems. I reply within 24 hours.</p>
+      <div class="contact-links">
+        <a class="clink" href="mailto:pramodtidkework@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          pramodtidkework@gmail.com
+        </a>
+        <a class="clink" href="https://github.com/pramodtidke" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          github.com/pramodtidke
+        </a>
+        <a class="clink" href="https://linkedin.com/in/pramod-tidke" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/pramod-tidke
+        </a>
+        <a class="clink" href="https://pramodtidke.in" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          pramodtidke.in
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-card yaml-card reveal reveal-delay-1">
+      <div class="yaml-comment"># availability.yaml</div>
+      <div><span class="yaml-key">status</span>: <span class="yaml-str">actively_looking</span></div>
+      <div><span class="yaml-key">notice_period</span>: <span class="yaml-num">immediate</span></div>
+      <div><span class="yaml-key">preferred_roles</span>:</div>
+      <div>&nbsp;&nbsp;<span class="yaml-arr">- DevOps Engineer</span></div>
+      <div>&nbsp;&nbsp;<span class="yaml-arr">- Cloud Engineer</span></div>
+      <div>&nbsp;&nbsp;<span class="yaml-arr">- SRE</span></div>
+      <div>&nbsp;&nbsp;<span class="yaml-arr">- Platform Engineer</span></div>
+      <div><span class="yaml-key">location</span>: <span class="yaml-str">Pune, India</span></div>
+      <div><span class="yaml-key">remote</span>: <span class="yaml-bool">true</span></div>
+      <div><span class="yaml-key">relocation</span>: <span class="yaml-bool">open</span></div>
+      <div><span class="yaml-key">email</span>: <span class="yaml-str">pramodtidkework@gmail.com</span></div>
+      <div><span class="yaml-key">response_time</span>: <span class="yaml-str">"&lt; 24 hours"</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-text">// pramodtidke.in · built with purpose · 2026</span>
+  <div class="footer-links">
+    <a href="https://github.com/pramodtidke" target="_blank">github</a>
+    <a href="https://linkedin.com/in/pramod-tidke" target="_blank">linkedin</a>
+    <a href="#about">sevenlearn</a>
+  </div>
+</footer>
+
+</div><!-- end .site -->
+
+<script>
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // animate skill bars when visible
+      e.target.querySelectorAll('.skill-bar[data-width]').forEach(bar => {
+        setTimeout(() => {
+          bar.style.width = bar.dataset.width + '%';
+        }, 200);
+      });
+      // animate counters
+      e.target.querySelectorAll('.istat-num[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        if (isNaN(target)) return;
+        animateCount(el, target);
+      });
+      e.target.querySelectorAll('.istat-num[data-target-text]').forEach(el => {
+        setTimeout(() => { el.textContent = el.dataset.targetText; }, 400);
+      });
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── COUNT UP ──
+function animateCount(el, target) {
+  let start = 0;
+  const duration = 1200;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// ── TYPED COMMAND in terminal ──
+const commands = [
+  'kubectl get pods --all-namespaces',
+  'terraform plan -out=tfplan',
+  'docker build -t app:latest .',
+  'argocd app sync gitops-k8s',
+  'trivy image --severity CRITICAL app:latest',
+];
+let cmdIndex = 0;
+let charIndex = 0;
+let typing = true;
+const typedEl = document.getElementById('typed-cmd');
+
+function typeLoop() {
+  if (!typedEl) return;
+  const current = commands[cmdIndex];
+  if (typing) {
+    if (charIndex < current.length) {
+      typedEl.textContent += current[charIndex++];
+      setTimeout(typeLoop, 55);
+    } else {
+      typing = false;
+      setTimeout(typeLoop, 2200);
+    }
+  } else {
+    if (charIndex > 0) {
+      typedEl.textContent = current.substring(0, --charIndex);
+      setTimeout(typeLoop, 28);
+    } else {
+      typing = true;
+      cmdIndex = (cmdIndex + 1) % commands.length;
+      setTimeout(typeLoop, 400);
+    }
+  }
+}
+setTimeout(typeLoop, 3200);
+
+// ── SMOOTH ACTIVE NAV ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.style.color = '');
+      const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (active) active.style.color = 'var(--blue)';
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => navObserver.observe(s));
+</script>
+</body>
+</html>
