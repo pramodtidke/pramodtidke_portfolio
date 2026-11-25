@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/pramodtidke",
+      "note": "Code and projects",
+      "group": "Platforms"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/pramodtidke/",
+      "note": "Professional updates",
+      "group": "Platforms"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/@thepramodtidke",
+      "note": "Videos",
+      "group": "Platforms"
+    },
+    {
+      "name": "SevenLearn on YouTube",
+      "url": "https://www.youtube.com/@sevenlearnn",
+      "note": "Learning videos",
+      "group": "Platforms"
+    },
+    {
+      "name": "SevenLearn on Instagram",
+      "url": "https://www.instagram.com/sevenlearnn/",
+      "note": "Learning, in short form",
+      "group": "Platforms"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/thepramodtidke/",
+      "note": "Life and moments",
+      "group": "Platforms"
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/thepramodtidke",
+      "note": "Short thoughts",
+      "group": "More"
+    },
+    {
+      "name": "Medium",
+      "url": "https://pramodtidke.medium.com/",
+      "note": "Articles",
+      "group": "More"
+    },
+    {
+      "name": "Substack",
+      "url": "https://substack.com/@pramodtidke",
+      "note": "Newsletter",
+      "group": "More"
+    },
+    {
+      "name": "Reddit",
+      "url": "https://www.reddit.com/user/pramodtidke/",
+      "note": "Discussions",
+      "group": "More"
+    },
+    {
+      "name": "Markase",
+      "url": "https://markase.com",
+      "note": "Freelancing brand",
+      "group": "More"
+    },
+    {
+      "name": "Markase on Instagram",
+      "url": "https://www.instagram.com/themarkase/",
+      "note": "Brand updates",
+      "group": "More"
+    }
+  ]
+}

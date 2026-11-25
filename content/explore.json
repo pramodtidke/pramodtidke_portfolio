@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "type": "Learning notes",
+      "title": "Notes on scheduling with GitHub Actions",
+      "date": "2026-11-10",
+      "text": "What worked, what broke, and what I would do again.",
+      "url": "",
+      "sample": true,
+      "draft": false
+    },
+    {
+      "type": "Books",
+      "title": "A book worth finishing",
+      "date": "2026-09-18",
+      "text": "Title, a few lines on why, and three takeaways.",
+      "url": "",
+      "sample": true,
+      "draft": false
+    }
+  ]
+}

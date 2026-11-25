@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "question": "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+      "answer": "echo",
+      "hint": "You may hear it in a canyon."
+    },
+    {
+      "question": "The more of me you take, the more you leave behind. What am I?",
+      "answer": "footsteps|steps|footstep",
+      "hint": "Think of a walk."
+    },
+    {
+      "question": "What has keys but can’t open locks?",
+      "answer": "piano|keyboard",
+      "hint": "Music, or typing."
+    },
+    {
+      "question": "What gets wetter the more it dries?",
+      "answer": "towel",
+      "hint": "Found in a bathroom."
+    },
+    {
+      "question": "I am always coming, but I never arrive. What am I?",
+      "answer": "tomorrow",
+      "hint": "It follows today."
+    },
+    {
+      "question": "What can travel around the world while staying in a corner?",
+      "answer": "stamp|a stamp",
+      "hint": "Look at an envelope."
+    },
+    {
+      "question": "What has a head and a tail but no body?",
+      "answer": "coin|a coin",
+      "hint": "Flip it."
+    }
+  ]
+}

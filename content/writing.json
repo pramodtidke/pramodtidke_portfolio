@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "title": "How AI agents will change everyday work",
+      "platform": "Medium",
+      "category": "Technology & AI",
+      "date": "2026-11-12",
+      "url": "https://pramodtidke.medium.com/",
+      "description": "A two-line intro to the idea sits here, then a link to the original.",
+      "featured": false,
+      "draft": false,
+      "sample": true
+    },
+    {
+      "title": "What running a one-person agency teaches you",
+      "platform": "Substack",
+      "category": "Business & Entrepreneurship",
+      "date": "2026-10-28",
+      "url": "https://substack.com/@pramodtidke",
+      "description": "Lessons from clients, deadlines and doing it alone.",
+      "featured": false,
+      "draft": false,
+      "sample": true
+    },
+    {
+      "title": "What trading taught me about risk",
+      "platform": "Medium",
+      "category": "Finance & Economics",
+      "date": "2026-10-09",
+      "url": "https://pramodtidke.medium.com/",
+      "description": "Why managing losses matters more than picking winners.",
+      "featured": false,
+      "draft": false,
+      "sample": true
+    }
+  ]
+}

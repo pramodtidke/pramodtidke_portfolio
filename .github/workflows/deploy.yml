@@ -1,0 +1,32 @@
+name: Import feeds, build and deploy
+on:
+  push: { branches: [main] }
+  schedule: [{ cron: "17 */6 * * *" }]   # also publishes scheduled posts
+  workflow_dispatch:
+permissions: { contents: write, pages: write, id-token: write }
+concurrency: { group: pages, cancel-in-progress: true }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install markdown pyyaml
+      - name: Import feeds
+        run: python scripts/import_feeds.py
+        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+      - name: Commit imported content
+        run: |
+          git config user.name "feed-bot"; git config user.email "bot@users.noreply.github.com"
+          git add content
+          git diff --cached --quiet || (git commit -m "Import feeds [skip ci]" && git push) || true
+      - name: Build site (also checks internal links)
+        run: python build.py
+        env: { SITE_URL: "https://pramodtidke.in" }
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: _site }
+      - id: d
+        uses: actions/deploy-pages@v4

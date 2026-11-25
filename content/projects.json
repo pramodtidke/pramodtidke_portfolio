@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "name": "This personal website",
+      "status": "In progress",
+      "problem": "One home for everything I publish, managed from my phone.",
+      "tech": [
+        "GitHub Pages",
+        "Sveltia CMS",
+        "RSS"
+      ],
+      "lesson": "Static hosting needs a dashboard to feel effortless.",
+      "github": "https://github.com/pramodtidke",
+      "live": "https://pramodtidke.in",
+      "sample": false,
+      "draft": false
+    },
+    {
+      "name": "SecureFlow-CI",
+      "status": "Completed",
+      "problem": "A DevSecOps pipeline with security checks built into every build.",
+      "tech": [
+        "CI/CD",
+        "Docker",
+        "Security"
+      ],
+      "lesson": "",
+      "github": "https://github.com/pramodtidke",
+      "live": "",
+      "sample": true,
+      "draft": false
+    },
+    {
+      "name": "AI BankApp",
+      "status": "In progress",
+      "problem": "A banking app used to practise a full DevOps delivery flow.",
+      "tech": [
+        "Docker",
+        "Kubernetes",
+        "CI/CD"
+      ],
+      "lesson": "",
+      "github": "https://github.com/pramodtidke",
+      "live": "",
+      "sample": true,
+      "draft": false
+    }
+  ]
+}

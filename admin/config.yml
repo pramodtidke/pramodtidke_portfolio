@@ -1,0 +1,216 @@
+# Sveltia CMS config. Optional: add `publish_mode: editorial_workflow` below `backend` for a draft > review > publish flow.
+backend:
+  name: github
+  repo: pramodtidke/pramodtidke_portfolio
+  branch: main
+media_folder: assets/uploads
+public_folder: assets/uploads
+site_url: https://pramodtidke.in
+display_url: https://pramodtidke.in
+collections:
+  - name: pages
+    label: Pages and text
+    files:
+      - name: site
+        label: Site settings (hero and headshot)
+        file: content/site.json
+        format: json
+        fields:
+          - { label: Hero status chip, name: status, widget: string, hint: 'Short line next to the green dot, e.g. Building in public' }
+          - { label: Headshot, name: headshot, widget: image, required: false, hint: 'Square photo works best. Leave empty to show the PT monogram.' }
+          - { label: Rotating hero words, name: hero_words, widget: list, field: { label: Word, name: w, widget: string } }
+          - { label: Analytics domain (Plausible), name: analytics_domain, widget: string, required: false, hint: 'Leave empty for no analytics, e.g. pramodtidke.in' }
+      - name: now
+        label: Now page
+        file: content/now.json
+        format: json
+        fields:
+          - { label: Working on, name: working_on, widget: list, field: { label: Item, name: i, widget: string } }
+          - { label: Learning, name: learning, widget: list, field: { label: Item, name: i, widget: string } }
+          - { label: Reading, name: reading, widget: list, field: { label: Item, name: i, widget: string } }
+          - { label: Goals, name: goals, widget: list, field: { label: Item, name: i, widget: string } }
+          - { label: Next, name: next, widget: list, field: { label: Item, name: i, widget: string } }
+      - name: about
+        label: About and homepage text
+        file: content/about.json
+        format: json
+        fields:
+          - { label: Homepage statement, name: statement_main, widget: string }
+          - { label: Homepage statement (muted part), name: statement_muted, widget: text }
+          - { label: Homepage About intro, name: intro, widget: text }
+          - { label: About page biography, name: bio, widget: text, required: false }
+  - name: blog
+    label: Blog posts
+    folder: content/blog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}} · {{date}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false, hint: 'A future date schedules the post' }
+      - { label: Description, name: description, widget: text, hint: 'One or two sentences for search results and sharing' }
+      - { label: Category, name: category, widget: select, options: [Technology & AI, Business & Entrepreneurship, Finance & Economics, Marketing & Creativity, Personal Development, Life & Experiences] }
+      - { label: Tags, name: tags, widget: list, required: false, field: { label: Tag, name: t, widget: string } }
+      - { label: Cover image, name: cover, widget: image, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+      - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - { label: Body, name: body, widget: markdown }
+  - name: content
+    label: Content lists
+    files:
+      - name: writing
+        label: Writing (manual)
+        file: content/writing.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Platform, name: platform, widget: select, options: [Medium, Substack, LinkedIn, X, Reddit, Other] }
+              - { label: Category, name: category, widget: select, options: [Technology & AI, Business & Entrepreneurship, Finance & Economics, Marketing & Creativity, Personal Development, Life & Experiences] }
+              - { label: Date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
+              - { label: Url, name: url, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+              - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+              - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - name: imported-writing
+        label: Writing (auto-imported)
+        file: content/imported-writing.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Platform, name: platform, widget: select, options: [Medium, Substack, LinkedIn, X, Reddit, Other] }
+              - { label: Category, name: category, widget: select, options: [Technology & AI, Business & Entrepreneurship, Finance & Economics, Marketing & Creativity, Personal Development, Life & Experiences] }
+              - { label: Date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
+              - { label: Url, name: url, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Featured, name: featured, widget: boolean, default: false, required: false }
+              - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+              - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - name: videos
+        label: Videos (manual)
+        file: content/videos.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Channel, name: channel, widget: select, options: ['@thepramodtidke', SevenLearn] }
+              - { label: Url, name: url, widget: string }
+              - { label: Date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
+              - { label: Duration, name: duration, widget: string, required: false }
+              - { label: Thumbnail, name: thumbnail, widget: string, required: false }
+              - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+              - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - name: imported-videos
+        label: Videos (auto-imported)
+        file: content/imported-videos.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Channel, name: channel, widget: select, options: ['@thepramodtidke', SevenLearn] }
+              - { label: Url, name: url, widget: string }
+              - { label: Date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
+              - { label: Duration, name: duration, widget: string, required: false }
+              - { label: Thumbnail, name: thumbnail, widget: string, required: false }
+              - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+              - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - name: projects
+        label: Projects
+        file: content/projects.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Status, name: status, widget: select, options: [Completed, In progress, Experiment, On hold] }
+              - { label: Problem, name: problem, widget: text }
+              - { label: Tech, name: tech, widget: list, field: { label: Tech, name: t, widget: string } }
+              - { label: Lesson, name: lesson, widget: text, required: false }
+              - { label: Github, name: github, widget: string, required: false }
+              - { label: Live, name: live, widget: string, required: false }
+              - { label: Role, name: role, widget: string, required: false }
+              - { label: Screenshot, name: screenshot, widget: image, required: false }
+              - { label: What I did, name: what_i_did, widget: text, required: false }
+              - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+              - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - name: explore
+        label: Explore
+        file: content/explore.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Type, name: type, widget: select, options: [Learning notes, Books, Experiences] }
+              - { label: Title, name: title, widget: string }
+              - { label: Date, name: date, widget: datetime, format: 'YYYY-MM-DD', date_format: 'YYYY-MM-DD', time_format: false }
+              - { label: Text, name: text, widget: text }
+              - { label: Url, name: url, widget: string, required: false }
+              - { label: Draft, name: draft, widget: boolean, default: false, required: false }
+              - { label: Sample, name: sample, widget: boolean, default: false, required: false }
+      - name: profiles
+        label: Social profiles
+        file: content/profiles.json
+        format: json
+        fields:
+          - label: Entries
+            name: items
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Url, name: url, widget: string }
+              - { label: Note, name: note, widget: string }
+              - { label: Group, name: group, widget: select, options: [Platforms, More] }
+      - name: games
+        label: Riddles (Games page)
+        file: content/games.json
+        format: json
+        fields:
+          - label: Riddles
+            name: items
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { label: Question, name: question, widget: text }
+              - { label: Answer, name: answer, widget: string, hint: 'Separate accepted answers with |, e.g. piano|keyboard' }
+              - { label: Hint, name: hint, widget: string, required: false }
+      - name: testimonials
+        label: Testimonials (real ones only)
+        file: content/testimonials.json
+        format: json
+        fields:
+          - label: Testimonials
+            name: items
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Quote, name: quote, widget: text }
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
