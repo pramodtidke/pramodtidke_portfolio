@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "This personal website",
-      "status": "In progress",
+      "status": "Completed",
       "problem": "One home for everything I publish, managed from my phone.",
       "tech": [
         "GitHub Pages",
@@ -12,8 +12,11 @@
       "lesson": "Static hosting needs a dashboard to feel effortless.",
       "github": "https://github.com/pramodtidke",
       "live": "https://pramodtidke.in",
-      "sample": false,
-      "draft": false
+      "role": "",
+      "screenshot": "",
+      "what_i_did": "",
+      "draft": false,
+      "sample": false
     },
     {
       "name": "SecureFlow-CI",
@@ -27,8 +30,11 @@
       "lesson": "",
       "github": "https://github.com/pramodtidke",
       "live": "",
-      "sample": true,
-      "draft": false
+      "role": "",
+      "screenshot": "",
+      "what_i_did": "",
+      "draft": false,
+      "sample": true
     },
     {
       "name": "AI BankApp",
@@ -42,8 +48,11 @@
       "lesson": "",
       "github": "https://github.com/pramodtidke",
       "live": "",
-      "sample": true,
-      "draft": false
+      "role": "",
+      "screenshot": "",
+      "what_i_did": "",
+      "draft": false,
+      "sample": true
     }
   ]
 }
