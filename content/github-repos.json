@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "name": "resume",
+      "url": "https://github.com/pramodtidke/resume",
+      "description": "",
+      "language": "HTML",
+      "pushed": "2026-11-26"
+    },
+    {
       "name": "pramodtidke_portfolio",
       "url": "https://github.com/pramodtidke/pramodtidke_portfolio",
       "description": "",
@@ -13,13 +20,6 @@
       "description": "",
       "language": "HTML",
       "pushed": "2026-11-24"
-    },
-    {
-      "name": "resume",
-      "url": "https://github.com/pramodtidke/resume",
-      "description": "",
-      "language": "HTML",
-      "pushed": "2026-11-21"
     },
     {
       "name": "jewellery",
