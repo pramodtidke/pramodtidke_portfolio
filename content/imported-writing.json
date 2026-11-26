@@ -1,3 +1,15 @@
 {
-  "items": []
+  "items": [
+    {
+      "title": "The Power of Awareness",
+      "platform": "Medium",
+      "category": "Life & Experiences",
+      "date": "2026-11-26",
+      "url": "https://pramodtidke.medium.com/the-power-of-awareness-c8ee836739bb",
+      "description": "",
+      "featured": false,
+      "draft": false,
+      "sample": false
+    }
+  ]
 }
