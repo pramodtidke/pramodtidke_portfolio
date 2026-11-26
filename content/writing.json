@@ -32,6 +32,28 @@
       "featured": false,
       "draft": false,
       "sample": true
+    },
+    {
+      "title": "The Power of Awareness",
+      "platform": "Substack",
+      "category": "Life & Experiences",
+      "date": "2026-11-26",
+      "url": "https://pramodtidke.substack.com/p/the-power-of-awareness",
+      "description": "How understanding a situation can change the way we think, respond and make decisions",
+      "featured": true,
+      "draft": false,
+      "sample": false
+    },
+    {
+      "title": "The Power of Awareness",
+      "platform": "Medium",
+      "category": "Life & Experiences",
+      "date": "2026-11-26",
+      "url": "https://pramodtidke.medium.com/the-power-of-awareness-c8ee836739bb",
+      "description": "How understanding a situation can change the way we think, respond and make decisions",
+      "featured": true,
+      "draft": false,
+      "sample": false
     }
   ]
 }
